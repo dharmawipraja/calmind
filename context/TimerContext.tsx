@@ -1,10 +1,10 @@
-import {
+import React, {
   Dispatch,
   ReactNode,
   SetStateAction,
   createContext,
   useState,
-} from "react";
+} from 'react';
 
 interface TimerContextProps {
   duration: number;
@@ -20,14 +20,14 @@ interface TimerProviderProps {
   children: ReactNode;
 }
 
-const TimerProvider = ({ children }: TimerProviderProps) => {
+function TimerProvider({ children }: TimerProviderProps) {
   const [duration, setDuration] = useState(10);
 
   return (
-      <TimerContext.Provider value={{ duration, setDuration }}>
-          {children}
-      </TimerContext.Provider>
+    <TimerContext.Provider value={{ duration, setDuration }}>
+      {children}
+    </TimerContext.Provider>
   );
-};
+}
 
 export default TimerProvider;

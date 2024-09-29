@@ -6,6 +6,8 @@
  * You can remove the `reset-project` script from package.json and safely delete this file after running it.
  */
 
+/* eslint-disable */
+
 const fs = require('fs');
 const path = require('path');
 
@@ -42,27 +44,27 @@ export default function RootLayout() {
 }
 `;
 
-fs.rename(oldDirPath, newDirPath, (error) => {
+fs.rename(oldDirPath, newDirPath, error => {
   if (error) {
     return console.error(`Error renaming directory: ${error}`);
   }
   console.log('/app moved to /app-example.');
 
-  fs.mkdir(newAppDirPath, { recursive: true }, (error) => {
+  fs.mkdir(newAppDirPath, { recursive: true }, error => {
     if (error) {
       return console.error(`Error creating new app directory: ${error}`);
     }
     console.log('New /app directory created.');
 
     const indexPath = path.join(newAppDirPath, 'index.tsx');
-    fs.writeFile(indexPath, indexContent, (error) => {
+    fs.writeFile(indexPath, indexContent, error => {
       if (error) {
         return console.error(`Error creating index.tsx: ${error}`);
       }
       console.log('app/index.tsx created.');
 
       const layoutPath = path.join(newAppDirPath, '_layout.tsx');
-      fs.writeFile(layoutPath, layoutContent, (error) => {
+      fs.writeFile(layoutPath, layoutContent, error => {
         if (error) {
           return console.error(`Error creating _layout.tsx: ${error}`);
         }
